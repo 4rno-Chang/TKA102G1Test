@@ -44,8 +44,7 @@ public class feedbackVO {
 	@Column(name="fee_rating")
 	private Integer feeRating;
 
-	public feedbackVO() {
-	}
+
 
 	public Integer getFeedbackNo() {
 		return feedbackNo;
