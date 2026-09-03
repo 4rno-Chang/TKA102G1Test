@@ -2,7 +2,7 @@ package com.bistroops.feedback.model;
 
 import java.time.LocalDateTime;
 
-import com.bistroops.orders.model.OrdersVO;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ public class feedbackVO {
 	
 	@ManyToOne
 	@JoinColumn(name="orders_no",referencedColumnName = "orders_no")
-	private OrdersVO ordersNO;
+	//private OrdersVO ordersNO;
 
 	@Column(name="fee_customer")
 	private String feeCustomer;
@@ -55,13 +55,13 @@ public class feedbackVO {
 		this.feedbackNo = feedbackNo;
 	}
 
-	public OrdersVO getOrdersNO() {
-		return ordersNO;
-	}
+	//public OrdersVO getOrdersNO() {
+		//return ordersNO;
+	//}
 
-	public void setOrdersNO(OrdersVO ordersNO) {
-		this.ordersNO = ordersNO;
-	}
+//	public void setOrdersNO(OrdersVO ordersNO) {
+//		this.ordersNO = ordersNO;
+//	}
 
 	public String getFeeCustomer() {
 		return feeCustomer;
