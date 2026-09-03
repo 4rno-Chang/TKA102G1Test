@@ -19,8 +19,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="orders")
 public class OrdersVO {
-	//???
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ordersNo")
