@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 @Table(name="seat_type")
 public class SeatTypeVO {
 	
+
 	@Id
 	@Column(name = "seat_type_no",nullable=false)
 	private String seatTypeNo;
