@@ -2,8 +2,6 @@ package com.bistroops.feedback.model;
 
 import java.time.LocalDateTime;
 
-import com.bistroops.orders.model.OrdersVO;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,9 +20,9 @@ public class feedbackVO {
 	@Column(name="feedback_no")
 	private Integer feedbackNo;
 	
-	@ManyToOne
-	@JoinColumn(name="orders_no",referencedColumnName = "orders_no")
-	private OrdersVO ordersNO;
+//	@ManyToOne
+//	@JoinColumn(name="orders_no",referencedColumnName = "orders_no")
+//	private OrdersVO orders;
 
 	@Column(name="fee_customer")
 	private String feeCustomer;
@@ -43,7 +41,7 @@ public class feedbackVO {
 	
 	@Column(name="fee_rating")
 	private Integer feeRating;
-
+	
 	public feedbackVO() {
 	}
 
@@ -55,13 +53,13 @@ public class feedbackVO {
 		this.feedbackNo = feedbackNo;
 	}
 
-	public OrdersVO getOrdersNO() {
-		return ordersNO;
-	}
-
-	public void setOrdersNO(OrdersVO ordersNO) {
-		this.ordersNO = ordersNO;
-	}
+//	public OrdersVO getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(OrdersVO orders) {
+//		this.orders = orders;
+//	}
 
 	public String getFeeCustomer() {
 		return feeCustomer;
@@ -110,7 +108,16 @@ public class feedbackVO {
 	public void setFeeRating(Integer feeRating) {
 		this.feeRating = feeRating;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "feedbackVO [feedbackNo=" + feedbackNo + ", feeCustomer=" + feeCustomer + ", feeCustomerTel="
+				+ feeCustomerTel + ", feeCustomerTime=" + feeCustomerTime + ", feeTime=" + feeTime + ", feeContent="
+				+ feeContent + ", feeRating=" + feeRating + "]";
+	}
+
+
+
+
 
 }

@@ -1,9 +1,9 @@
 package com.bistroops.promote.model;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Set;
 
-import com.bistroops.promotemeal.model.PromoteMealVO;
 import com.bistroops.promotemeal.model.PromoteMealVO;
 
 import jakarta.persistence.CascadeType;
@@ -37,15 +37,104 @@ public class PromoteVO {
 	@Column(name="promote_status")
 	private String promoteStatus;
 	
-	@Column(name="promote_content")
+	@Column(name="promote_content", columnDefinition = "mediumtext")
 	private String promoteContent;
 	
 	@Column(name="promote_img", columnDefinition = "mediumblob")
 	private byte[] promoteImg;
 	
-	@OneToMany(mappedBy = "promoteNo", cascade = CascadeType.ALL)
-	@OrderBy("empno asc")
+	@OneToMany(mappedBy = "promote")
+	@OrderBy("promote asc")
 	private Set<PromoteMealVO> promoteMeals;
+	
+//	@OneToMany(mappedBy = "promote")
+//	@OrderBy("ordersNo asc")
+//	private Set<ordersDetails> ordersDetails;
+
+	public PromoteVO() {
+	}
+
+	public Integer getPromoteNo() {
+		return promoteNo;
+	}
+
+	public void setPromoteNo(Integer promoteNo) {
+		this.promoteNo = promoteNo;
+	}
+
+	public String getPromoteName() {
+		return promoteName;
+	}
+
+	public void setPromoteName(String promoteName) {
+		this.promoteName = promoteName;
+	}
+
+	public LocalDateTime getPromoteBegin() {
+		return promoteBegin;
+	}
+
+	public void setPromoteBegin(LocalDateTime promoteBegin) {
+		this.promoteBegin = promoteBegin;
+	}
+
+	public LocalDateTime getPromoteEnd() {
+		return promoteEnd;
+	}
+
+	public void setPromoteEnd(LocalDateTime promoteEnd) {
+		this.promoteEnd = promoteEnd;
+	}
+
+	public String getPromoteStatus() {
+		return promoteStatus;
+	}
+
+	public void setPromoteStatus(String promoteStatus) {
+		this.promoteStatus = promoteStatus;
+	}
+
+	public String getPromoteContent() {
+		return promoteContent;
+	}
+
+	public void setPromoteContent(String promoteContent) {
+		this.promoteContent = promoteContent;
+	}
+
+	public byte[] getPromoteImg() {
+		return promoteImg;
+	}
+
+	public void setPromoteImg(byte[] promoteImg) {
+		this.promoteImg = promoteImg;
+	}
+
+	public Set<PromoteMealVO> getPromoteMeals() {
+		return promoteMeals;
+	}
+
+	public void setPromoteMeals(Set<PromoteMealVO> promoteMeals) {
+		this.promoteMeals = promoteMeals;
+	}
+
+//	public Set<ordersDetails> getOrdersDetails() {
+//		return ordersDetails;
+//	}
+//
+//	public void setOrdersDetails(Set<ordersDetails> ordersDetails) {
+//		this.ordersDetails = ordersDetails;
+//	}
+
+	@Override
+	public String toString() {
+		return "PromoteVO [promoteNo=" + promoteNo + ", promoteName=" + promoteName + ", promoteBegin=" + promoteBegin
+				+ ", promoteEnd=" + promoteEnd + ", promoteStatus=" + promoteStatus + ", promoteContent="
+				+ promoteContent + ", promoteImg=" + Arrays.toString(promoteImg) + ", promoteMeals=" + promoteMeals
+				+ "]";
+	}
+	
+	
 	
 
 }

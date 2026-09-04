@@ -23,7 +23,7 @@ public class PromoteMealVO {
 	
 	@ManyToOne
 	@JoinColumn(name="meal_no", referencedColumnName = "meal_no")
-	private MealVO mealNo;
+	private MealVO meal;
 	
 	@Column(name="promote_discount")
 	private Integer promoteDiscount;
@@ -31,6 +31,35 @@ public class PromoteMealVO {
 	public PromoteMealVO() {
 	}
 
-	
+	public PromoteVO getPromote() {
+		return promote;
+	}
 
+	public void setPromote(PromoteVO promote) {
+		this.promote = promote;
+	}
+
+	public MealVO getMeal() {
+		return meal;
+	}
+
+	public void setMeal(MealVO meal) {
+		this.meal = meal;
+	}
+
+	public Integer getPromoteDiscount() {
+		return promoteDiscount;
+	}
+
+	public void setPromoteDiscount(Integer promoteDiscount) {
+		this.promoteDiscount = promoteDiscount;
+	}
+
+	@Override
+	public String toString() {
+		return "PromoteMealVO [promote=" + promote + ", meal=" + meal + ", promoteDiscount=" + promoteDiscount + "]";
+	}
+	
+	
+	
 }
