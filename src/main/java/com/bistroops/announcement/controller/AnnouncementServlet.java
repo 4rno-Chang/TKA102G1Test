@@ -11,10 +11,11 @@ import com.bistroops.announcement.model.*;
 
 @WebServlet("/ann/ann.do")
 public class AnnouncementServlet extends HttpServlet {
-//	private AnnouncementService annService;
-	
-//	public AnnouncementServlet() {
-		AnnouncementService annService = new AnnouncementService();
+	AnnouncementService annService = new AnnouncementService();
+	//	private AnnouncementService annService;
+//	@Override
+//	public void init() throws ServletException {
+//		annService = new AnnouncementServiceImpl();
 //	}
 	
 	@Override
