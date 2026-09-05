@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List AnnEmps</title>
+<title>List All Announcements</title>
 </head>
 <body>
 	<h1>公告列表</h1>
@@ -30,6 +30,6 @@
 	<br>
 	<br><br>
 	
-	<a href="${pageContext.request.contextPath}/index.jsp">回首頁</a>	
+	<a href="${pageContext.request.contextPath}/announcement/index.jsp">回首頁</a>	
 </body>
 </html>

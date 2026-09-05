@@ -27,6 +27,8 @@ public class AnnouncementServlet extends HttpServlet {
 		case "getAll":
 			forwardPath = getAll(req, res);
 			break;
+//		case "":
+//			forwardPath = qetOne(req, res);
 		default:
 			forwardPath = "/index.jsp";
 		}
@@ -43,8 +45,22 @@ public class AnnouncementServlet extends HttpServlet {
 		return "/announcement/listAllAnns.jsp";
 	}
 
+	/*
+	private String getCompositeEmpsQuery(HttpServletRequest req, HttpServletResponse res) {
+		Map<String, String[]> map = req.getParameterMap();
+
+		if (map != null) {
+			List<Emp> empList = empService.getEmpsByCompositeQuery(map);
+			req.setAttribute("empList", empList);
+		} else {
+			return "/index.jsp";
+		}
+		return "/emp/listCompositeQueryEmps.jsp";
+	}
+	*/
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
+	
 }
