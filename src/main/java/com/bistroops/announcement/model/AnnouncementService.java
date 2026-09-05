@@ -19,7 +19,7 @@ public class AnnouncementService {
 	}
 	
 	public AnnouncementVO getAnnNoQuery(Integer annNo) {
-		return dao.fingByAnnNo(annNo);
+		return dao.findByAnnNo(annNo);
 	}
 	
 

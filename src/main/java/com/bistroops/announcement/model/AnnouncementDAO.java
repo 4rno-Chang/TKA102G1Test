@@ -51,7 +51,7 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 
 	
 	@Override
-	public AnnouncementVO fingByAnnNo(Integer annNo) {
+	public AnnouncementVO findByAnnNo(Integer annNo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
