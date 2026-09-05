@@ -6,8 +6,8 @@ import com.bistroops.meal.model.MealVO;
 import com.bistroops.promote.model.PromoteVO;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -16,7 +16,9 @@ import jakarta.persistence.Table;
 @Table(name="promote_meal")
 public class PromoteMealVO {
 	
-	@Id
+	@EmbeddedId
+	private ComPromteMealId id;
+	
 	@ManyToOne
 	@JoinColumn(name="promote_no", referencedColumnName = "promote_no")
 	private PromoteVO promote;

@@ -137,8 +137,4 @@ public class MealVO  {
 				+ mealStatusEn + ", promoteMeals=" + promoteMeals + "]";
 	}
 	
-	
-
-	
-	
 }
