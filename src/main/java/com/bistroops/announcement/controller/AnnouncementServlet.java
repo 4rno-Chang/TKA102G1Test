@@ -27,10 +27,10 @@ public class AnnouncementServlet extends HttpServlet {
 		case "getAll":
 			forwardPath = getAll(req, res);
 			break;
-//		case "":
+//		case "annNoQuery":
 //			forwardPath = qetOne(req, res);
 		default:
-			forwardPath = "/index.jsp";
+			forwardPath = "/announcement/index.jsp";
 		}
 
 		res.setContentType("text/html; charset=UTF-8");
@@ -45,19 +45,13 @@ public class AnnouncementServlet extends HttpServlet {
 		return "/announcement/listAllAnns.jsp";
 	}
 
-	/*
-	private String getCompositeEmpsQuery(HttpServletRequest req, HttpServletResponse res) {
-		Map<String, String[]> map = req.getParameterMap();
-
-		if (map != null) {
-			List<Emp> empList = empService.getEmpsByCompositeQuery(map);
-			req.setAttribute("empList", empList);
-		} else {
-			return "/index.jsp";
-		}
-		return "/emp/listCompositeQueryEmps.jsp";
+	
+	private String annNoQuery(HttpServletRequest req, HttpServletResponse res) {
+		annService.getAnnNoQuery((Integer)req.getAttribute("annNo"));
+		
+		return "/announcement/listOneAnn.jsp";
 	}
-	*/
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);

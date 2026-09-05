@@ -10,4 +10,5 @@ public interface AnnouncementDAO_interface {
           public AnnouncementVO findByPrimaryKey(Integer annNo);
 */
 	      public List<AnnouncementVO> getAll();
+	      public AnnouncementVO fingByAnnNo(Integer annNo);
 }
