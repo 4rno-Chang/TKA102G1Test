@@ -49,13 +49,16 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 
 	}*/
 
-	/*
+	
 	@Override
-	public DeptVO findByPrimaryKey(Integer deptno) {
+	public AnnouncementVO fingByAnnNo(Integer annNo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
-	}*/
+		
+		AnnouncementVO ann = new AnnouncementVO();
+		
+		return ann;
+	}
 
 	@Override
 	public List<AnnouncementVO> getAll() {

@@ -11,6 +11,17 @@
 	<a href="${pageContext.request.contextPath}/ann/ann.do?action=getAll">查看所有公告</a>
 	<br>
 	<br>
+	<form action="${pageContext.request.contextPath}/ann/ann.do"
+		method="post">
+		<p>
+			<label>公告編號查詢：</label>
+		</p>
+		<input type="text" name="annNo"><br>
+		<input type="hidden" name="action" value="annNoQuery">
+	</form>
+	<br>
+	<br>
+	<!-- 
 	<h3>
 		<b>複合查詢：</b>
 	</h3>
@@ -29,6 +40,7 @@
 		</p>
 		<input type="hidden" name="action" value="compositeQuery">
 	</form>
+	-->
 
 </body>
 </html>
