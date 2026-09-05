@@ -15,7 +15,7 @@ public class AnnouncementServlet extends HttpServlet {
 	//	private AnnouncementService annService;
 //	@Override
 //	public void init() throws ServletException {
-//		annService = new AnnouncementServiceImpl();
+//		annService = new AnnouncementServiceImpl(); 
 //	}
 	
 	@Override
