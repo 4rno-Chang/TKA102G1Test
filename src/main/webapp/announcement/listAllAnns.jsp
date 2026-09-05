@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>List All Announcements</title>
 </head>
-<body>
+<body> 
 	<h1>公告列表</h1>
 	<table style="width:50%; text-align:center;">
 		<tr>
