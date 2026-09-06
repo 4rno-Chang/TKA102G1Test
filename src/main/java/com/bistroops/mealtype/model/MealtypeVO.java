@@ -21,10 +21,10 @@ public class MealtypeVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "meal_type_no", updatable = false)
-	private Integer mealTypeNo;
+	private Integer mealtypeNo;
 
 	@Column(name = "meal_type_name")
-	private String mealTypeName;
+	private String mealtypeName;
 	
 	@OneToMany(mappedBy="mealType",cascade = CascadeType.ALL)
 	@OrderBy("mealNo asc")
@@ -36,26 +36,26 @@ public class MealtypeVO {
 
 	
 
-	public Integer getMealTypeNo() {
-		return mealTypeNo;
+	public Integer getMealtypeNo() {
+		return mealtypeNo;
 	}
 
 
 
-	public void setMealTypeNo(Integer mealTypeNo) {
-		this.mealTypeNo = mealTypeNo;
+	public void setMealtypeNo(Integer mealtypeNo) {
+		this.mealtypeNo = mealtypeNo;
 	}
 
 
 
-	public String getMealTypeName() {
-		return mealTypeName;
+	public String getMealtypeName() {
+		return mealtypeName;
 	}
 
 
 
-	public void setMealTypeName(String mealTypeName) {
-		this.mealTypeName = mealTypeName;
+	public void setMealtypeName(String mealtypeName) {
+		this.mealtypeName = mealtypeName;
 	}
 
 
@@ -74,7 +74,7 @@ public class MealtypeVO {
 
 	@Override
 	public String toString() {
-		return "MealtypeVO [mealTypeNo=" + mealTypeNo + ", mealTypeName=" + mealTypeName + ", meals=" + meals + "]";
+		return "MealtypeVO [mealTypeNo=" + mealtypeNo + ", mealTypeName=" + mealtypeName + ", meals=" + meals + "]";
 	}
 
 }
