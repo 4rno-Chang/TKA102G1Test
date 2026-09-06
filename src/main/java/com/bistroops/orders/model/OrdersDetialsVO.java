@@ -17,6 +17,7 @@ import jakarta.persistence.UniqueConstraint;
 
 public class OrdersDetialsVO {
 
+	//??
 	@ManyToOne
 	@JoinColumn(name="ordersNo",referencedColumnName="ordersNo", nullable=false)
 	private OrdersVO orders;
