@@ -28,6 +28,22 @@
 							alt="${ann.annTitle}">
 					</c:if></td>
 				<td>${ann.annText}</td>
+				<td>
+					<form action="${pageContext.request.contextPath}/ann/ann.do"
+						method="post">
+						<input type="hidden" name="action" value="updateAnnPage">
+						<input type="hidden" name="annNo" value="${ann.annNo}">
+						<button type="submit">修改公告</button>
+					</form>
+				</td>
+				<td>
+					<form action="${pageContext.request.contextPath}/ann/ann.do"
+						method="post">
+						<input type="hidden" name="action" value="deleteAnn">
+						<input type="hidden" name="annNo" value="${ann.annNo}">
+						<button type="submit">刪除公告</button>
+					</form>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

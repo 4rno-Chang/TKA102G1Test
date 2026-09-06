@@ -28,13 +28,27 @@ public class AnnouncementService {
 
 		ann.setAnnTitle(annTitle);
 		ann.setAnnBegin(annBegin);
-		
-		System.out.println("Service圖片大小：" +
-			    (annImg == null ? "null" : annImg.length));
-		
 		ann.setAnnImg(annImg);
 		ann.setAnnText(annText);
 		
 		dao.insert(ann);
+	}
+	
+	public void updateAnn(Integer annNo, String annTitle, LocalDateTime annBegin, byte[] annImg, String annText) {
+		AnnouncementVO ann = new AnnouncementVO();
+		
+		ann.setAnnNo(annNo);
+		ann.setAnnTitle(annTitle);
+		ann.setAnnBegin(annBegin);
+		ann.setAnnImg(annImg);
+		ann.setAnnText(annText);
+		
+		if (annImg != null && annImg.length > 0)
+		    dao.update(ann);
+		else
+		    dao.updateNoImg(ann);
+	}
+	public void deleteAnn(Integer annNo) {
+		dao.delete(annNo);
 	}
 }
