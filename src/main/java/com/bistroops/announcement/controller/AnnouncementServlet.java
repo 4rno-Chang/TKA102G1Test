@@ -15,7 +15,7 @@ public class AnnouncementServlet extends HttpServlet {
 	//	private AnnouncementService annService;
 //	@Override
 //	public void init() throws ServletException {
-//		annService = new AnnouncementServiceImpl(); 
+//		annService = new AnnouncementServiceImpl();
 //	}
 	
 	@Override
@@ -27,8 +27,9 @@ public class AnnouncementServlet extends HttpServlet {
 		case "getAll":
 			forwardPath = getAll(req, res);
 			break;
-//		case "annNoQuery":
-//			forwardPath = qetOne(req, res);
+		case "annNoQuery":
+			forwardPath = annNoQuery(req, res);
+			break;
 		default:
 			forwardPath = "/announcement/index.jsp";
 		}
@@ -47,9 +48,28 @@ public class AnnouncementServlet extends HttpServlet {
 
 	
 	private String annNoQuery(HttpServletRequest req, HttpServletResponse res) {
-		annService.getAnnNoQuery((Integer)req.getAttribute("annNo"));
-		
-		return "/announcement/listOneAnn.jsp";
+		String annNoStr = req.getParameter("annNo");	    
+	    // 防呆
+	    if (annNoStr == null || annNoStr.trim().isEmpty()) {
+	        req.setAttribute("errorMsg", "請輸入公告編號");
+	        return "/announcement/index.jsp";
+	    }
+	    try {
+	        Integer annNo = Integer.parseInt(annNoStr.trim());
+	        AnnouncementVO ann = annService.getAnnNoQuery(annNo);
+
+	        if (ann == null) {
+	            req.setAttribute("errorMsg", "查無此公告編號：" + annNo);
+	            return "/announcement/index.jsp";
+	        }
+
+	        req.setAttribute("ann", ann);   // 把查到的資料放進 request
+	        return "/announcement/listOneAnn.jsp";
+
+	    } catch (NumberFormatException e) {
+	        req.setAttribute("errorMsg", "公告編號格式錯誤");
+	        return "/announcement/index.jsp";
+	    }
 	}
 	
 	@Override
