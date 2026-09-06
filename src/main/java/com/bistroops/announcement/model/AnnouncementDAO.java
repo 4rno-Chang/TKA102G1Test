@@ -27,6 +27,8 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 	private static final String FIND_BY_ANNNO_STMT = "SELECT ann_no, ann_title, ann_begin, ann_img, ann_text FROM announcement WHERE ann_no = ?";
 	private static final String GET_ALL_STMT = "SELECT ann_no, ann_title, ann_begin, ann_img, ann_text FROM announcement";
 	private static final String INSERT_ANN = "INSERT INTO project.announcement(ann_title, ann_begin, ann_img, ann_text) VALUES (?, ?, ?, ?)";
+	private static final String UPDATE_ANN = "UPDATE project.announcement SET ann_title = ?, ann_begin = ?, ann_img = ?, ann_text = ? WHERE ann_no = ?";
+	private static final String UPDATE_ANN_NO_IMG = "UPDATE project.announcement SET ann_title = ?, ann_begin = ?, ann_text = ? WHERE ann_no = ?";
 
 	@Override
 	public AnnouncementVO findByAnnNo(Integer annNo) {
@@ -152,5 +154,63 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void update(AnnouncementVO annVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_ANN);
+			
+			pstmt.setString(1,  annVO.getAnnTitle());
+			pstmt.setTimestamp(2, Timestamp.valueOf(annVO.getAnnBegin()));			
+			pstmt.setBytes(3, annVO.getAnnImg());
+			pstmt.setString(4, annVO.getAnnText());
+
+			pstmt.setInt(5, annVO.getAnnNo());
+			
+			pstmt.executeUpdate();
+			
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void updateNoImg(AnnouncementVO annVO) {
+
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+
+	    try {
+
+	        con = ds.getConnection();
+
+	        pstmt = con.prepareStatement(UPDATE_ANN_NO_IMG);
+
+	        pstmt.setString(1, annVO.getAnnTitle());
+
+	        pstmt.setTimestamp(2,
+	            Timestamp.valueOf(annVO.getAnnBegin()));
+
+	        pstmt.setString(3, annVO.getAnnText());
+
+	        pstmt.setInt(4, annVO.getAnnNo());
+
+	        pstmt.executeUpdate();
+
+	    } catch (SQLException se) {
+
+	        se.printStackTrace();
+
+	    } catch (Exception e) {
+
+	        e.printStackTrace();
+	    }
 	}
 }

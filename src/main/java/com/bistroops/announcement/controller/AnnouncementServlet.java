@@ -39,6 +39,12 @@ public class AnnouncementServlet extends HttpServlet {
 		case "insertAnn":
 		    forwardPath = insertAnn(req, res);
 		    break;
+		case "updateAnnPage":
+			forwardPath = updateAnnPage(req, res); 
+			break;
+		case "updateAnn":
+			forwardPath = updateAnn(req, res);
+			break;
 		default:
 			forwardPath = "/announcement/index.jsp";
 		}
@@ -115,6 +121,51 @@ public class AnnouncementServlet extends HttpServlet {
 		return "/announcement/index.jsp";
 	}
 
+	private String updateAnnPage(HttpServletRequest req, HttpServletResponse res) {
+	    Integer annNo = Integer.parseInt(req.getParameter("annNo"));
+	    AnnouncementVO ann = annService.getAnnNoQuery(annNo);
+	    req.setAttribute("ann", ann);
+
+	    return "/announcement/updateAnnPage.jsp";
+	}
+	
+
+	private String updateAnn(HttpServletRequest req, HttpServletResponse res) {
+	    String annNoStr = req.getParameter("annNo");
+		String annTitleStr = req.getParameter("annTitle");
+		String annBeginStr = req.getParameter("annBegin");
+		String annTextStr = req.getParameter("annText");
+
+		if (annTitleStr == null || annTitleStr.trim().isEmpty()) {
+			req.setAttribute("errorMsg", "請輸入公告標題");
+			return "/announcement/index.jsp";
+		}
+
+		try {
+			Integer annNo = Integer.parseInt(annNoStr);
+			String annTitle = annTitleStr.trim();
+			LocalDateTime annBegin = LocalDateTime.parse(annBeginStr);
+			String annText = annTextStr;
+			Part annImgPart = req.getPart("annImg");
+			byte[] annImg = null;
+			
+			if (annImgPart != null && annImgPart.getSize() > 0) {
+			    BufferedInputStream bis = new BufferedInputStream(annImgPart.getInputStream());
+			    annImg = bis.readAllBytes();
+			    bis.close();
+			}		
+			
+			annService.updateAnn(annNo, annTitle, annBegin, annImg, annText);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("errorMsg", "新增公告失敗");
+			return "/announcement/index.jsp";
+		}
+
+		return "/announcement/index.jsp";
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);

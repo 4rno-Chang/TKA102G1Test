@@ -11,4 +11,6 @@ public interface AnnouncementDAO_interface {
 	public List<AnnouncementVO> getAll();
 	public AnnouncementVO findByAnnNo(Integer annNo);
 	public void insert(AnnouncementVO annVO);
+	public void update(AnnouncementVO annVO);
+	public void updateNoImg(AnnouncementVO annVo);
 }
