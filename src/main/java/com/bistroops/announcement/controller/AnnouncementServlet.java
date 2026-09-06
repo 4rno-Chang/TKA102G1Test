@@ -98,7 +98,10 @@ public class AnnouncementServlet extends HttpServlet {
 			byte[] annImg = null;
 			
 			if (annImgPart != null && annImgPart.getSize() > 0) {
-			    annImg = annImgPart.getInputStream().readAllBytes();
+//			    annImg = annImgPart.getInputStream().readAllBytes();
+			    BufferedInputStream bis = new BufferedInputStream(annImgPart.getInputStream());
+			    annImg = bis.readAllBytes();
+			    bis.close();
 			}		
 			
 			annService.insertAnn(annTitle, annBegin, annImg, annText);
