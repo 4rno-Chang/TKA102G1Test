@@ -1,14 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>List All Announcements</title>
 </head>
-<body> 
+<body>
 	<h1>公告列表</h1>
-	<table style="width:50%; text-align:center;">
+	<table style="width: 50%; text-align: center;">
 		<tr>
 			<th>公告編號</th>
 			<th>公告標題</th>
@@ -21,21 +22,20 @@
 				<td>${ann.annNo}</td>
 				<td>${ann.annTitle}</td>
 				<td>${ann.annBegin}</td>
-				<%-- <td>${ann.annImg}</td> --%>
-				<td>
-				<c:if test="${not empty ann.annImg}">
-    <img src="${pageContext.request.contextPath}/ann/annImage.do?annNo=${ann.annNo}"
-         alt="${ann.annTitle}">
-</c:if>
-</td>
+				<td><c:if test="${not empty ann.annImg}">
+						<img
+							src="${pageContext.request.contextPath}/ann/ann.img?annNo=${ann.annNo}"
+							alt="${ann.annTitle}">
+					</c:if></td>
 				<td>${ann.annText}</td>
 			</tr>
 		</c:forEach>
 	</table>
-	
+
 	<br>
-	<br><br>
-	
-	<a href="${pageContext.request.contextPath}/announcement/index.jsp">回首頁</a>	
+	<br>
+	<br>
+
+	<a href="${pageContext.request.contextPath}/announcement/index.jsp">回首頁</a>
 </body>
 </html>
