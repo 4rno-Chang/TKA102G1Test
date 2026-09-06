@@ -21,7 +21,13 @@
 				<td>${ann.annNo}</td>
 				<td>${ann.annTitle}</td>
 				<td>${ann.annBegin}</td>
-				<td>${ann.annImg}</td>
+				<%-- <td>${ann.annImg}</td> --%>
+				<td>
+				<c:if test="${not empty ann.annImg}">
+    <img src="${pageContext.request.contextPath}/ann/annImage.do?annNo=${ann.annNo}"
+         alt="${ann.annTitle}">
+</c:if>
+</td>
 				<td>${ann.annText}</td>
 			</tr>
 		</c:forEach>
