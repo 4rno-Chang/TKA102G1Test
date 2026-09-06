@@ -7,25 +7,27 @@
 <title>List All Announcements</title>
 </head>
 <body> 
-	<h1>公告列表</h1>
-	<table style="width:50%; text-align:center;">
-		<tr>
-			<th>公告編號</th>
-			<th>公告標題</th>
-			<th>公告時間</th>
-			<th>推播圖</th>
-			<th>文字內容</th>
-		</tr>
-		<c:forEach var="ann" items="${annList}">
+	<h1>公告查詢結果</h1>
+	<c:if test="${empty ann}">
+		<p>查無資料</p>
+	</c:if>
+
+	<c:if test="${not empty ann}">
+		<table style="width:50%; text-align:center;">
+			<tr>
+				<th>公告編號</th>
+				<th>公告標題</th>
+				<th>公告時間</th>
+				<th>文字內容</th>
+			</tr>
 			<tr>
 				<td>${ann.annNo}</td>
 				<td>${ann.annTitle}</td>
 				<td>${ann.annBegin}</td>
-				<td>${ann.annImg}</td>
 				<td>${ann.annText}</td>
 			</tr>
-		</c:forEach>
-	</table>
+		</table>
+	</c:if>
 	
 	<br>
 	<br><br>
