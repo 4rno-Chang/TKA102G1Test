@@ -29,6 +29,7 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 	private static final String INSERT_ANN = "INSERT INTO project.announcement(ann_title, ann_begin, ann_img, ann_text) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_ANN = "UPDATE project.announcement SET ann_title = ?, ann_begin = ?, ann_img = ?, ann_text = ? WHERE ann_no = ?";
 	private static final String UPDATE_ANN_NO_IMG = "UPDATE project.announcement SET ann_title = ?, ann_begin = ?, ann_text = ? WHERE ann_no = ?";
+	private static final String DELETE_ANN = "DELETE FROM project.announcement WHERE ann_no = ?";
 
 	@Override
 	public AnnouncementVO findByAnnNo(Integer annNo) {
@@ -37,7 +38,7 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 		ResultSet rs = null;
 
 		AnnouncementVO annVO = null;
-		
+
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_ANNNO_STMT);
@@ -89,7 +90,7 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 
 		List<AnnouncementVO> list = new ArrayList<>();
 		AnnouncementVO annVO = null;
-		
+
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
@@ -132,85 +133,103 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public void insert(AnnouncementVO annVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_ANN);
-			
-			pstmt.setString(1,  annVO.getAnnTitle());
-			pstmt.setTimestamp(2, Timestamp.valueOf(annVO.getAnnBegin()));			
+
+			pstmt.setString(1, annVO.getAnnTitle());
+			pstmt.setTimestamp(2, Timestamp.valueOf(annVO.getAnnBegin()));
 			pstmt.setBytes(3, annVO.getAnnImg());
 			pstmt.setString(4, annVO.getAnnText());
 
 			pstmt.executeUpdate();
-			
-		}catch(SQLException se) {
+
+		} catch (SQLException se) {
 			se.printStackTrace();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void update(AnnouncementVO annVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE_ANN);
-			
-			pstmt.setString(1,  annVO.getAnnTitle());
-			pstmt.setTimestamp(2, Timestamp.valueOf(annVO.getAnnBegin()));			
+
+			pstmt.setString(1, annVO.getAnnTitle());
+			pstmt.setTimestamp(2, Timestamp.valueOf(annVO.getAnnBegin()));
 			pstmt.setBytes(3, annVO.getAnnImg());
 			pstmt.setString(4, annVO.getAnnText());
 
 			pstmt.setInt(5, annVO.getAnnNo());
-			
+
 			pstmt.executeUpdate();
-			
-		}catch(SQLException se) {
+
+		} catch (SQLException se) {
 			se.printStackTrace();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void updateNoImg(AnnouncementVO annVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
-	    Connection con = null;
-	    PreparedStatement pstmt = null;
+		try {
 
-	    try {
+			con = ds.getConnection();
 
-	        con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_ANN_NO_IMG);
 
-	        pstmt = con.prepareStatement(UPDATE_ANN_NO_IMG);
+			pstmt.setString(1, annVO.getAnnTitle());
+			pstmt.setTimestamp(2, Timestamp.valueOf(annVO.getAnnBegin()));
+			pstmt.setString(3, annVO.getAnnText());
+			pstmt.setInt(4, annVO.getAnnNo());
 
-	        pstmt.setString(1, annVO.getAnnTitle());
+			pstmt.executeUpdate();
 
-	        pstmt.setTimestamp(2,
-	            Timestamp.valueOf(annVO.getAnnBegin()));
+		} catch (SQLException se) {
 
-	        pstmt.setString(3, annVO.getAnnText());
+			se.printStackTrace();
 
-	        pstmt.setInt(4, annVO.getAnnNo());
+		} catch (Exception e) {
 
-	        pstmt.executeUpdate();
+			e.printStackTrace();
+		}
+	}
 
-	    } catch (SQLException se) {
+	@Override
+	public void delete(Integer annNo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
-	        se.printStackTrace();
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_ANN);
 
-	    } catch (Exception e) {
+			pstmt.setInt(1, annNo);
 
-	        e.printStackTrace();
-	    }
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+
+			se.printStackTrace();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
 	}
 }

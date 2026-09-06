@@ -48,4 +48,7 @@ public class AnnouncementService {
 		else
 		    dao.updateNoImg(ann);
 	}
+	public void deleteAnn(Integer annNo) {
+		dao.delete(annNo);
+	}
 }

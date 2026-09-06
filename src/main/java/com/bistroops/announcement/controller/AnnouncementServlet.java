@@ -45,6 +45,9 @@ public class AnnouncementServlet extends HttpServlet {
 		case "updateAnn":
 			forwardPath = updateAnn(req, res);
 			break;
+		case "deleteAnn":
+			forwardPath = deleteAnn(req, res);
+			break;
 		default:
 			forwardPath = "/announcement/index.jsp";
 		}
@@ -128,7 +131,6 @@ public class AnnouncementServlet extends HttpServlet {
 
 	    return "/announcement/updateAnnPage.jsp";
 	}
-	
 
 	private String updateAnn(HttpServletRequest req, HttpServletResponse res) {
 	    String annNoStr = req.getParameter("annNo");
@@ -166,6 +168,14 @@ public class AnnouncementServlet extends HttpServlet {
 		return "/announcement/index.jsp";
 	}
 	
+	private String deleteAnn(HttpServletRequest req, HttpServletResponse res) {
+		String annNoStr = req.getParameter("annNo");
+		
+		Integer annNo = Integer.parseInt(annNoStr.trim());
+		annService.deleteAnn(annNo);
+		
+		return "/announcement/index.jsp";
+	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
