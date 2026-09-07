@@ -8,7 +8,6 @@ import org.hibernate.Session;
 
 public class OrdersDAOImpl implements OrdersDAO{
 
-	//KKK
 	public void insert(OrdersVO orders) {
 		Session session =HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
