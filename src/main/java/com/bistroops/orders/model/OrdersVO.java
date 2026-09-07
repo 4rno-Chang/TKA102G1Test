@@ -64,21 +64,6 @@ public class OrdersVO {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public OrdersVO(Integer ordersNo, SeatVO seatNo, MemberVO memberNo, LocalDateTime ordersTime, Integer ordersTotal,
-			Integer ordersDiscountTotal, Integer ordersActualPrice, String ordersPay, Set<OrdersDetialsVO> ordersDetials) {
-		super();
-		this.ordersNo = ordersNo;
-		this.seatNo = seatNo;
-		this.memberNo = memberNo;
-		this.ordersTime = ordersTime;
-		this.ordersTotal = ordersTotal;
-		this.ordersDiscountTotal = ordersDiscountTotal;
-		this.ordersActualPrice = ordersActualPrice;
-		this.ordersPay = ordersPay;
-		this.ordersDetials = ordersDetials;
-	}
-
 	public Integer getOrdersNo() {
 		return ordersNo;
 	}

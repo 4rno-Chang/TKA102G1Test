@@ -47,6 +47,83 @@ public class OrdersDetialsVO {
 	
 	@Column(name = "od_status")
 	private String odStatus;
+
+	public OrdersDetialsVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public OrdersVO getOrders() {
+		return orders;
+	}
+
+	public void setOrders(OrdersVO orders) {
+		this.orders = orders;
+	}
+
+	public MealVO getMealNo() {
+		return mealNo;
+	}
+
+	public void setMealNo(MealVO mealNo) {
+		this.mealNo = mealNo;
+	}
+
+	public PromoteVO getPromoteNo() {
+		return promoteNo;
+	}
+
+	public void setPromoteNo(PromoteVO promoteNo) {
+		this.promoteNo = promoteNo;
+	}
+
+	public Integer getOdMealNum() {
+		return odMealNum;
+	}
+
+	public void setOdMealNum(Integer odMealNum) {
+		this.odMealNum = odMealNum;
+	}
+
+	public Integer getOdDiscountPrice() {
+		return odDiscountPrice;
+	}
+
+	public void setOdDiscountPrice(Integer odDiscountPrice) {
+		this.odDiscountPrice = odDiscountPrice;
+	}
+
+	public Integer getOdDiscountTotal() {
+		return odDiscountTotal;
+	}
+
+	public void setOdDiscountTotal(Integer odDiscountTotal) {
+		this.odDiscountTotal = odDiscountTotal;
+	}
+
+	public Integer getOdActualPrice() {
+		return odActualPrice;
+	}
+
+	public void setOdActualPrice(Integer odActualPrice) {
+		this.odActualPrice = odActualPrice;
+	}
+
+	public String getOdComment() {
+		return odComment;
+	}
+
+	public void setOdComment(String odComment) {
+		this.odComment = odComment;
+	}
+
+	public String getOdStatus() {
+		return odStatus;
+	}
+
+	public void setOdStatus(String odStatus) {
+		this.odStatus = odStatus;
+	}
 	
 	
 	
