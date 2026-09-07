@@ -16,7 +16,7 @@ public interface MealtypeDAO {
 
 	public MealtypeVO findByNo(Integer mealtypeNo);
 
-	public List<MealtypeVO> getByCompositeQuery(Map<String, String> map);
+	public List<MealtypeVO> getByNameQuery(String name);
 	
 	public Set<MealVO> getMealByTpye(Integer mealtypeNo);
 
