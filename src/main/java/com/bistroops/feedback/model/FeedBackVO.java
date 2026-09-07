@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="feedback")
-public class feedbackVO {
+public class FeedBackVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +42,7 @@ public class feedbackVO {
 	@Column(name="fee_rating")
 	private Integer feeRating;
 	
-	public feedbackVO() {
+	public FeedBackVO() {
 	}
 
 	public Integer getFeedbackNo() {
