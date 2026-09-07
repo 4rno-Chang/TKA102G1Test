@@ -19,16 +19,16 @@ public class OrdersDetialsVO {
 
 	
 	@ManyToOne
-	@JoinColumn(name="ordersNo",referencedColumnName="ordersNo", nullable=false)
+	@JoinColumn(name="orders_no",referencedColumnName="orders_no", nullable=false)
 	private OrdersVO orders;
 	
 	@ManyToOne
-	@JoinColumn(name="mealNo" ,referencedColumnName="mealNo", nullable=false)
-	private MealVO mealNo;//Long?
+	@JoinColumn(name="meal_no" ,referencedColumnName="meal_no", nullable=false)
+	private MealVO mealNo;
 	
 	@ManyToOne 
-	@JoinColumn(name="promoteNo" ,referencedColumnName="promoteNo")
-	private PromoteVO promoteNo;//Long?
+	@JoinColumn(name="promote_no" ,referencedColumnName="promote_no")
+	private PromoteVO promoteNo;
 	
 	@Column(name = "od_meal_num")
 	private Integer odMealNum;
