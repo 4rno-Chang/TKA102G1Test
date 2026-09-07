@@ -62,5 +62,6 @@ public class MealtypeDAOhibernate implements MealtypeDAO {
 		return getSession().createQuery("from MealtypeVO",MealtypeVO.class).getResultList();
 	}
 
+
 	
 }
