@@ -1,21 +1,25 @@
 package com.bistroops.mealtype.model;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.bistroops.meal.model.MealVO;
 
 public interface MealtypeDAO {
 	
-	public void insert(MealtypeVO MealtypeVO);
+	public void insert(MealtypeVO mealtypeVO);
 
-	public void update(MealtypeVO MealtypeVO);
+	public void update(MealtypeVO mealtypeVO);
 
-	public void delete(Integer mealTypeNo);
+	public void delete(Integer mealtypeNo);
 
-	public MealtypeVO findByPrimaryKey(Integer mealTypeNo);
+	public MealtypeVO findByNo(Integer mealtypeNo);
 
-	public MealtypeVO findByPrimaryKey(String mealTypeName);
+	public List<MealtypeVO> getByCompositeQuery(Map<String, String> map);
+	
+	public Set<MealVO> getMealByTpye(Integer mealtypeNo);
 
 	public List<MealtypeVO> getAll();
 	
-	public long getTotal();
-
 }
