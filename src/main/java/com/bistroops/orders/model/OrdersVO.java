@@ -23,37 +23,37 @@ public class OrdersVO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ordersNo")
+	@Column(name="orders_no")
 	private Integer ordersNo;
 	
 	@ManyToOne
-	@JoinColumn(name="seatNo")
+	@JoinColumn(name="seat_no")
 	private SeatVO seatNo;
 	
 	@ManyToOne
-	@JoinColumn(name="memberNo")
+	@JoinColumn(name="member_no")
 	private MemberVO memberNo;
 	
-	@Column(name="ordersTime")
+	@Column(name="orders_time")
 	private LocalDateTime ordersTime;
 	
-	@Column(name="ordersTotal")
+	@Column(name="orders_total")
 	private Integer ordersTotal;
 	
-	@Column(name="ordersDiscountTotal")
+	@Column(name="orders_discount_total")
 	private Integer ordersDiscountTotal;
 	
-	@Column(name="ordersActualPrice")
+	@Column(name="orders_actual_price")
 	private Integer ordersActualPrice;
 	
-	@Column(name="ordersPay" ,columnDefinition="varchar(2)")
+	@Column(name="orders_pay")
 	private String ordersPay;
 	
 	
 	@OneToMany(mappedBy="orders")
-	private Set<OrdersDetialsVO> orders;
+	private Set<OrdersDetialsVO> ordersDetials;
 	
-	
+
 //	@OneToMany(mappedBy="feedBackNo")
 //	private Set<FeedBackVO> feedBack;
 	
@@ -62,21 +62,6 @@ public class OrdersVO {
 	public OrdersVO() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-
-	public OrdersVO(Integer ordersNo, SeatVO seatNo, MemberVO memberNo, LocalDateTime ordersTime, Integer ordersTotal,
-			Integer ordersDiscountTotal, Integer ordersActualPrice, String ordersPay, Set<OrdersDetialsVO> orders) {
-		super();
-		this.ordersNo = ordersNo;
-		this.seatNo = seatNo;
-		this.memberNo = memberNo;
-		this.ordersTime = ordersTime;
-		this.ordersTotal = ordersTotal;
-		this.ordersDiscountTotal = ordersDiscountTotal;
-		this.ordersActualPrice = ordersActualPrice;
-		this.ordersPay = ordersPay;
-		this.orders = orders;
 	}
 
 	public Integer getOrdersNo() {
@@ -145,11 +130,11 @@ public class OrdersVO {
 	}
 
 	public Set<OrdersDetialsVO> getOrders() {
-		return orders;
+		return ordersDetials;
 	}
 
 	public void setOrders(Set<OrdersDetialsVO> orders) {
-		this.orders = orders;
+		this.ordersDetials = orders;
 	}
 
 

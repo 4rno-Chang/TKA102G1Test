@@ -26,7 +26,7 @@ public class SeatTypeVO {
 	
 	@Column(name = "seat_type_take_num")
 	private Integer seatTypeTakeNum;
-	
+
 	@Column(name = "seat_type_call_num")
 	private Integer seatTypeCallNum;
 	
@@ -45,6 +45,121 @@ public class SeatTypeVO {
 	//預約明細
 	@OneToMany(mappedBy="reservation")
 	private Set<ReservationVO> reservation;
+	
+	
+	
+	public SeatTypeVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public SeatTypeVO(String seatTypeNo, Integer seatTypeNum, Integer seatTypeRsvNum, Integer seatTypeTakeNum,
+			Integer seatTypeCallNum, Integer seatTypePending, Set<WaitingVO> waiting, Set<SeatVO> seat,
+			Set<ReservationVO> reservation) {
+		super();
+		this.seatTypeNo = seatTypeNo;
+		this.seatTypeNum = seatTypeNum;
+		this.seatTypeRsvNum = seatTypeRsvNum;
+		this.seatTypeTakeNum = seatTypeTakeNum;
+		this.seatTypeCallNum = seatTypeCallNum;
+		this.seatTypePending = seatTypePending;
+		this.waiting = waiting;
+		this.seat = seat;
+		this.reservation = reservation;
+	}
+
+
+
+	public String getSeatTypeNo() {
+		return seatTypeNo;
+	}
+
+
+	public void setSeatTypeNo(String seatTypeNo) {
+		this.seatTypeNo = seatTypeNo;
+	}
+
+
+	public Integer getSeatTypeNum() {
+		return seatTypeNum;
+	}
+
+
+	public void setSeatTypeNum(Integer seatTypeNum) {
+		this.seatTypeNum = seatTypeNum;
+	}
+
+
+	public Integer getSeatTypeRsvNum() {
+		return seatTypeRsvNum;
+	}
+
+
+	public void setSeatTypeRsvNum(Integer seatTypeRsvNum) {
+		this.seatTypeRsvNum = seatTypeRsvNum;
+	}
+
+
+	public Integer getSeatTypeTakeNum() {
+		return seatTypeTakeNum;
+	}
+
+
+	public void setSeatTypeTakeNum(Integer seatTypeTakeNum) {
+		this.seatTypeTakeNum = seatTypeTakeNum;
+	}
+
+
+	public Integer getSeatTypeCallNum() {
+		return seatTypeCallNum;
+	}
+
+
+	public void setSeatTypeCallNum(Integer seatTypeCallNum) {
+		this.seatTypeCallNum = seatTypeCallNum;
+	}
+
+
+	public Integer getSeatTypePending() {
+		return seatTypePending;
+	}
+
+
+	public void setSeatTypePending(Integer seatTypePending) {
+		this.seatTypePending = seatTypePending;
+	}
+
+
+	public Set<WaitingVO> getWaiting() {
+		return waiting;
+	}
+
+
+	public void setWaiting(Set<WaitingVO> waiting) {
+		this.waiting = waiting;
+	}
+
+
+	public Set<SeatVO> getSeat() {
+		return seat;
+	}
+
+
+	public void setSeat(Set<SeatVO> seat) {
+		this.seat = seat;
+	}
+
+
+	public Set<ReservationVO> getReservation() {
+		return reservation;
+	}
+
+
+	public void setReservation(Set<ReservationVO> reservation) {
+		this.reservation = reservation;
+	}
 	
 	
 }
