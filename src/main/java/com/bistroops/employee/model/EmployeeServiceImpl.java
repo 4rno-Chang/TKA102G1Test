@@ -32,6 +32,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void addEmployee(EmployeeVO employee) {
 	    dao.insert(employee);
 	}
+	
+	@Override
+	public void updateEmployee(EmployeeVO employee) {
+	    dao.update(employee);
+	}
 
 	@Override
 	public List<EmployeeVO> getEmployeesByCompositeQuery(Map<String, String[]> map) {

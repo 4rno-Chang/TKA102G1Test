@@ -38,12 +38,29 @@
 				<td>${employee.empSal}</td>
 				<td>${employee.empStatus}</td>
 				<td>
-	            	<form action="${pageContext.request.contextPath}/employee/employee.do" method="post">
-	                <input type="hidden" name="empNo" value="${employee.empNo}">
-	                <input type="hidden" name="action" value="delete">
-	                <input type="submit" value="刪除">
-            		</form>
-        		</td>
+
+    <!-- 修改 -->
+    <form action="${pageContext.request.contextPath}/employee/employee.do"
+          method="post">
+
+        <input type="hidden" name="empNo" value="${employee.empNo}">
+        <input type="hidden" name="action" value="getOneForUpdate">
+
+        <input type="submit" value="修改">
+    </form>
+
+
+    <!-- 刪除 -->
+    <form action="${pageContext.request.contextPath}/employee/employee.do"
+          method="post">
+
+        <input type="hidden" name="empNo" value="${employee.empNo}">
+        <input type="hidden" name="action" value="delete">
+
+        <input type="submit" value="刪除">
+    </form>
+
+</td>
 			</tr>
 		</c:forEach>
 	</table>

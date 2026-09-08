@@ -22,7 +22,7 @@
 
     <!-- 複合查詢 -->
     <h3><b>複合查詢 (使用 Criteria Query)：</b></h3>
-
+	<p style="color:red;">${compositeErrorMsg}</p>
     <form action="${pageContext.request.contextPath}/employee/employee.do" method="post">
 
         <p><label>員工名字模糊查詢：</label></p>
@@ -49,6 +49,8 @@
 
     <!-- 查單一 -->
     <h3>查詢單一員工</h3>
+    
+    <p style="color:red;">${errorMsg}</p>
 
     <form action="${pageContext.request.contextPath}/employee/employee.do" method="post">
 

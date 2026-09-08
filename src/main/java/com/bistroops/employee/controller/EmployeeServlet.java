@@ -35,12 +35,20 @@ public class EmployeeServlet extends HttpServlet {
 
         switch (action) {
         
+        case "insert":
+            forwardPath = insertEmployee(req, res);
+            break;
+        
         case "getOne":
             forwardPath = getOneEmployee(req, res);
             break;
             
-        case "insert":
-            forwardPath = insertEmployee(req, res);
+        case "getOneForUpdate":
+            forwardPath = getOneForUpdate(req, res);
+            break;            
+            
+        case "update":
+            forwardPath = updateEmployee(req, res);
             break;
             
         case "delete":
@@ -67,45 +75,97 @@ public class EmployeeServlet extends HttpServlet {
         dispatcher.forward(req, res);
     }
     
-    private String insertEmployee(HttpServletRequest req,HttpServletResponse res) {
+    private String insertEmployee(HttpServletRequest req, HttpServletResponse res) {
 
-        String empName = req.getParameter("empName");// 從前端表單取得員工姓名
-        //String empPassword = req.getParameter("empPassword");// 從前端表單取得員工密碼
-        String empTel = req.getParameter("empTel");// 從前端表單取得員工電話
-        String empIce = req.getParameter("empIce");// 從前端表單取得緊急聯絡人
-        String empIcetel = req.getParameter("empIcetel");// 從前端表單取得緊急聯絡人電話
-        String empAdd = req.getParameter("empAdd");// 從前端表單取得員工地址
-        String empSal = req.getParameter("empSal");// 從前端表單取得員工薪資
-        String empStatus = req.getParameter("empStatus");// 從前端表單取得員工狀態
+        String empName = req.getParameter("empName");
+        String empTel = req.getParameter("empTel");
+        String empIce = req.getParameter("empIce");
+        String empIcetel = req.getParameter("empIcetel");
+        String empAdd = req.getParameter("empAdd");
+        String empSal = req.getParameter("empSal");
+        String empStatus = req.getParameter("empStatus");
 
-        EmployeeVO employee = new EmployeeVO();
+        // 防呆：必填欄位不能空白
+        if (empName == null || empName.trim().isEmpty()
+                || empTel == null || empTel.trim().isEmpty()
+                || empIce == null || empIce.trim().isEmpty()
+                || empIcetel == null || empIcetel.trim().isEmpty()
+                || empAdd == null || empAdd.trim().isEmpty()
+                || empSal == null || empSal.trim().isEmpty()
+                || empStatus == null || empStatus.trim().isEmpty()) {
 
-        employee.setEmpName(empName);
-        //employee.setEmpPassword(empPassword);
-        employee.setEmpPassword("12345678"); // 新增員工時設定預設密碼
-        employee.setEmpTel(empTel);
-        employee.setEmpIce(empIce);
-        employee.setEmpIcetel(empIcetel);
-        employee.setEmpAdd(empAdd);
-        employee.setEmpSal(Integer.valueOf(empSal));
-        employee.setEmpStatus(empStatus);
+            req.setAttribute("errorMsg", "請完整填寫員工資料");
+            return "/employee/addEmployee.jsp";
+        }
 
-        employeeService.addEmployee(employee);
+        try {
 
-        req.getSession().removeAttribute("employeePageQty");
+            Integer salary = Integer.parseInt(empSal.trim());
 
-        return getAllEmployees(req, res);
+            EmployeeVO employee = new EmployeeVO();
+
+            employee.setEmpName(empName);
+            employee.setEmpPassword("12345678");
+            employee.setEmpTel(empTel);
+            employee.setEmpIce(empIce);
+            employee.setEmpIcetel(empIcetel);
+            employee.setEmpAdd(empAdd);
+            employee.setEmpSal(salary);
+            employee.setEmpStatus(empStatus);
+
+            employeeService.addEmployee(employee);
+
+            req.getSession().removeAttribute("employeePageQty");
+
+            return getAllEmployees(req, res);
+
+        } catch (NumberFormatException e) {
+
+            req.setAttribute("errorMsg", "薪資格式錯誤，請輸入數字");
+            return "/employee/addEmployee.jsp";
+        }
     }
     
     private String getOneEmployee(HttpServletRequest req, HttpServletResponse res) {
 
-        String empNo = req.getParameter("empNo");
-        
-        // 沒有輸入員工編號
-        if (empNo == null || empNo.trim().isEmpty()) {
+        // 防呆
+        String empNoStr = req.getParameter("empNo");
+
+        // 沒有輸入
+        if (empNoStr == null || empNoStr.trim().isEmpty()) {
+            req.setAttribute("errorMsg", "請輸入員工編號");
             return "/employee/index.jsp";
         }
 
+        try {
+
+            // 將輸入的字串轉成 Integer
+            Integer empNo = Integer.parseInt(empNoStr.trim());
+
+            // 查詢員工
+            EmployeeVO employee = employeeService.getEmployeeById(empNo);
+
+            // 查不到此員工
+            if (employee == null) {
+                req.setAttribute("errorMsg", "查無此員工編號" );
+                return "/employee/index.jsp";
+            }
+
+            // 查詢成功
+            req.setAttribute("employee", employee);
+            return "/employee/listOneEmployee.jsp";
+
+        } catch (NumberFormatException e) {
+
+            // 輸入的不是數字
+            req.setAttribute("errorMsg", "員工編號格式錯誤");
+            return "/employee/index.jsp";
+        }
+    }
+    
+    private String getOneForUpdate(HttpServletRequest req, HttpServletResponse res) {
+
+        String empNo = req.getParameter("empNo");
 
         Integer id = Integer.valueOf(empNo);
 
@@ -113,8 +173,40 @@ public class EmployeeServlet extends HttpServlet {
 
         req.setAttribute("employee", employee);
 
-        return "/employee/listOneEmployee.jsp";
+        return "/employee/editEmployee.jsp";
     }
+    
+    private String updateEmployee(HttpServletRequest req, HttpServletResponse res) {
+
+        String empNo = req.getParameter("empNo");
+        String empName = req.getParameter("empName");
+        String empTel = req.getParameter("empTel");
+        String empIce = req.getParameter("empIce");
+        String empIcetel = req.getParameter("empIcetel");
+        String empAdd = req.getParameter("empAdd");
+        String empSal = req.getParameter("empSal");
+        String empStatus = req.getParameter("empStatus");
+
+        Integer id = Integer.valueOf(empNo);
+
+        // 先查出原本的員工
+        EmployeeVO employee = employeeService.getEmployeeById(id);
+
+        // 修改允許修改的資料
+        employee.setEmpName(empName);
+        employee.setEmpTel(empTel);
+        employee.setEmpIce(empIce);
+        employee.setEmpIcetel(empIcetel);
+        employee.setEmpAdd(empAdd);
+        employee.setEmpSal(Integer.valueOf(empSal));
+        employee.setEmpStatus(empStatus);
+
+        // 更新
+        employeeService.updateEmployee(employee);
+
+        return getAllEmployees(req, res);
+    }
+
     
     private String deleteEmployee(
             HttpServletRequest req,
@@ -162,19 +254,29 @@ public class EmployeeServlet extends HttpServlet {
             HttpServletRequest req,
             HttpServletResponse res) {
 
-        Map<String, String[]> map = req.getParameterMap();
+        String empName = req.getParameter("empName");
+        String empTel = req.getParameter("empTel");
+        String empAdd = req.getParameter("empAdd");
+        String empStatus = req.getParameter("empStatus");
+        String empSal = req.getParameter("empSal");
 
-        if (map != null) {
+        // 防呆：全部查詢條件都沒有輸入
+        if ((empName == null || empName.trim().isEmpty())
+                && (empTel == null || empTel.trim().isEmpty())
+                && (empAdd == null || empAdd.trim().isEmpty())
+                && (empStatus == null || empStatus.trim().isEmpty())
+                && (empSal == null || empSal.trim().isEmpty())) {
 
-            List<EmployeeVO> employeeList =
-                    employeeService.getEmployeesByCompositeQuery(map);
-
-            req.setAttribute("employeeList", employeeList);
-
-        } else {
-
+            req.setAttribute("compositeErrorMsg", "請至少輸入一項查詢條件");
             return "/employee/index.jsp";
         }
+
+        Map<String, String[]> map = req.getParameterMap();
+
+        List<EmployeeVO> employeeList =
+                employeeService.getEmployeesByCompositeQuery(map);
+
+        req.setAttribute("employeeList", employeeList);
 
         return "/employee/listCompositeQueryEmployees.jsp";
     }

@@ -3,6 +3,8 @@ package com.bistroops.employee.model;
 import java.util.List;
 import java.util.Map;
 
+
+
 public interface EmployeeService {
 
     List<EmployeeVO> getAllEmployees(int currentPage);
@@ -17,4 +19,6 @@ public interface EmployeeService {
     void addEmployee(EmployeeVO employee);//新增
     
     void deleteEmployee(Integer id);//刪除
+    
+    void updateEmployee(EmployeeVO employee);//修改
 }
