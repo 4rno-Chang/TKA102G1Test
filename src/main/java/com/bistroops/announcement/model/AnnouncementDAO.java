@@ -1,11 +1,6 @@
 package com.bistroops.announcement.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.naming.Context;
@@ -13,30 +8,30 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.bistroops.util.HibernateUtil;
 
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+
 public class AnnouncementDAO implements AnnouncementDAO_interface {
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
 //	Hibernate version
+
 	@Override
 	public AnnouncementVO findByAnnNo(Integer annNo) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		try {
-			String FindByAnn = "FROM AnnouncementVO WHERE annNo = :annNo";
-			return session.createQuery(FindByAnn, AnnouncementVO.class).setParameter("annNo", annNo).uniqueResult();
+//			============      hql      ============
+//			String FindByAnn = "FROM AnnouncementVO WHERE annNo = :annNo";			
+//			return session.createQuery(FindByAnn, AnnouncementVO.class).setParameter("annNo", annNo).uniqueResult();
+			
+//			============Hibernate method============
+			return session.find(AnnouncementVO.class, annNo);
 			
 		} catch (HibernateException he) {
 			he.printStackTrace();
@@ -54,8 +49,16 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		try {
-			String findAll = "FROM AnnouncementVO";
-			return session.createQuery(findAll, AnnouncementVO.class).getResultList();
+//			============      hql      ============
+//			String findAll = "FROM AnnouncementVO";
+//			return session.createQuery(findAll, AnnouncementVO.class).getResultList();
+			
+//			============Hibernate criteria============
+			CriteriaBuilder cb = session.getCriteriaBuilder();
+			CriteriaQuery<AnnouncementVO> cq = cb.createQuery(AnnouncementVO.class);
+
+			cq.from(AnnouncementVO.class);
+			return session.createQuery(cq).getResultList();
 			
 		} catch (HibernateException he) {
 			he.printStackTrace();
@@ -96,13 +99,17 @@ public class AnnouncementDAO implements AnnouncementDAO_interface {
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			Integer updateNo = annVO.getAnnNo();
-			AnnouncementVO ann = session.find(AnnouncementVO.class, updateNo);
 			
-			ann.setAnnTitle(annVO.getAnnTitle());
-			ann.setAnnBegin(annVO.getAnnBegin());
-			ann.setAnnText(annVO.getAnnText());
-			ann.setAnnImg(annVO.getAnnImg());
+//			先找annVO.no -> find找到這個VO -> 一個一個set(Update page傳過來的資料) ->commit
+//			Integer updateNo = annVO.getAnnNo();
+//			AnnouncementVO ann = session.find(AnnouncementVO.class, updateNo);
+//			ann.setAnnTitle(annVO.getAnnTitle());
+//			ann.setAnnBegin(annVO.getAnnBegin());
+//			ann.setAnnText(annVO.getAnnText());
+//			ann.setAnnImg(annVO.getAnnImg());
+			
+//			直接用session.merge(Update page傳過來的資料)
+			session.merge(annVO);
 			
 			transaction.commit();
 
