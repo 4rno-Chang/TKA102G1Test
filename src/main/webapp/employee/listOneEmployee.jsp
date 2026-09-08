@@ -9,10 +9,7 @@
 <body>
  <h1>單一員工資料</h1>
 <br>
-	<img width="140px" height="100px" alt="要飛囉貓貓" src="${pageContext.request.contextPath}/img/cat.png">
-	<img width="140px" height="100px" alt="要飛囉貓貓" src="${pageContext.request.contextPath}/img/cat.png">
-	<img width="140px" height="100px" alt="要飛囉貓貓" src="${pageContext.request.contextPath}/img/cat.png">
-	<table border="1" style="width:50%; text-align:center;">
+	<table border="1" style="width:80%; text-align:center; border-collapse:collapse;">
 	
         <tr>
             <th>員工編號</th>
@@ -56,16 +53,29 @@
     </table>
     <br>
 
-    <form action="${pageContext.request.contextPath}/employee/employee.do" method="post">
+    <!-- 修改 -->
+    <form action="${pageContext.request.contextPath}/employee/employee.do"
+          method="post">
+
+        <input type="hidden" name="empNo" value="${employee.empNo}">
+        <input type="hidden" name="action" value="getOneForUpdate">
+
+        <input type="submit" value="修改">
+    </form>
+
+
+    <!-- 刪除 -->
+    <form action="${pageContext.request.contextPath}/employee/employee.do"
+          method="post">
+
         <input type="hidden" name="empNo" value="${employee.empNo}">
         <input type="hidden" name="action" value="delete">
+
         <input type="submit" value="刪除">
-    </form>
+     </form>
     
     <br>
-	<img width="140px" height="100px" alt="要飛囉貓貓" src="${pageContext.request.contextPath}/img/inversecat.png">
-	<img width="140px" height="100px" alt="要飛囉貓貓" src="${pageContext.request.contextPath}/img/inversecat.png">
-	<img width="140px" height="100px" alt="要飛囉貓貓" src="${pageContext.request.contextPath}/img/inversecat.png">
+	
 	<br><br>
 	
 	<a href="${pageContext.request.contextPath}/employee/index.jsp">回首頁</a>	

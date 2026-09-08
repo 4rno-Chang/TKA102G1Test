@@ -12,6 +12,8 @@
 
 <h1>新增員工</h1>
 
+<p style="color:red;">${errorMsg}</p>
+
 <form action="${pageContext.request.contextPath}/employee/employee.do" method="post">
 
     員工姓名：
