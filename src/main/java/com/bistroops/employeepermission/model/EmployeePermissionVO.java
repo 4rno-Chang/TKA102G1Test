@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 @Entity
-@Table(name = "employeepermissionVO")
+@Table(name = "emp_permission")
 public class EmployeePermissionVO {
 	
 	@EmbeddedId

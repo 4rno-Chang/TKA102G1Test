@@ -61,7 +61,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public List<EmployeeVO> getAll() {
 		// TODO Auto-generated method stub
-		  return getSession().createQuery("from EmployeeVO", EmployeeVO.class).getResultList();
+		  return getSession().createQuery("FROM EmployeeVO", EmployeeVO.class).getResultList();
 	}
 
 	@Override

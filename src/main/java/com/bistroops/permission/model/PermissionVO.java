@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "permissionVO")
+@Table(name = "permission")
 public class PermissionVO {
 	
 	@Id
@@ -22,7 +22,7 @@ public class PermissionVO {
 	@Column(name = "perm_exp")
 	private String permExp;
 	
-	@OneToMany(mappedBy = "permisson" ,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "permission" ,cascade = CascadeType.ALL)
 	private Set<EmployeePermissionVO> employeepermissions;
 	
 	
