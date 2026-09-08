@@ -26,6 +26,8 @@
 			<th>地址</th>
 			<th>薪資</th>
 			<th>狀態</th>
+			<th>操作</th>
+			
 		</tr>
 		<c:forEach var="employee" items="${employeeList}">
 			<tr>
@@ -37,6 +39,13 @@
 				<td>${employee.empAdd}</td>
 				<td>${employee.empSal}</td>
 				<td>${employee.empStatus}</td>
+				<td>
+	            	<form action="${pageContext.request.contextPath}/employee/employee.do" method="post">
+	                <input type="hidden" name="empNo" value="${employee.empNo}">
+	                <input type="hidden" name="action" value="delete">
+	                <input type="submit" value="刪除">
+            		</form>
+        		</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -58,6 +67,6 @@
 	<img width="140px" height="100px" alt="要飛囉貓貓" src="${pageContext.request.contextPath}/img/inversecat.png">
 	<br><br>
 	
-	<a href="${pageContext.request.contextPath}/index.jsp">回首頁</a>	
+	<a href="${pageContext.request.contextPath}/employee/index.jsp">回首頁</a>	
 </body>
 </html>
