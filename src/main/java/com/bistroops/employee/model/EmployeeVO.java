@@ -1,20 +1,23 @@
 package com.bistroops.employee.model;
 
 import java.util.Set;
-
 import com.bistroops.employeepermission.model.EmployeePermissionVO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "empolyeeVO")
+@Table(name = "employee")
 public class EmployeeVO {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "emp_no")
 	private Integer empNo;
 	
@@ -42,7 +45,7 @@ public class EmployeeVO {
 	@Column(name = "emp_status")
 	private String empStatus;
 	
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<EmployeePermissionVO> employeepermissions;
 	
 

@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import com.bistroops.employee.controller.*;
-import com.bistroops.employee.model.*;
+import com.bistroops.employee.model.EmployeeVO;
+import com.bistroops.employee.model.EmployeeService;
+import com.bistroops.employee.model.EmployeeServiceImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -37,6 +38,14 @@ public class EmployeeServlet extends HttpServlet {
         case "getOne":
             forwardPath = getOneEmployee(req, res);
             break;
+            
+        case "insert":
+            forwardPath = insertEmployee(req, res);
+            break;
+            
+        case "delete":
+            forwardPath = deleteEmployee(req, res);
+            break;
 
         case "getAll":
             forwardPath = getAllEmployees(req, res);
@@ -47,7 +56,7 @@ public class EmployeeServlet extends HttpServlet {
             break;
 
         default:
-            forwardPath = "/index.jsp";
+            forwardPath = "/employee/index.jsp";
         }
 
         res.setContentType("text/html; charset=UTF-8");
@@ -58,13 +67,43 @@ public class EmployeeServlet extends HttpServlet {
         dispatcher.forward(req, res);
     }
     
+    private String insertEmployee(HttpServletRequest req,HttpServletResponse res) {
+
+        String empName = req.getParameter("empName");// 從前端表單取得員工姓名
+        //String empPassword = req.getParameter("empPassword");// 從前端表單取得員工密碼
+        String empTel = req.getParameter("empTel");// 從前端表單取得員工電話
+        String empIce = req.getParameter("empIce");// 從前端表單取得緊急聯絡人
+        String empIcetel = req.getParameter("empIcetel");// 從前端表單取得緊急聯絡人電話
+        String empAdd = req.getParameter("empAdd");// 從前端表單取得員工地址
+        String empSal = req.getParameter("empSal");// 從前端表單取得員工薪資
+        String empStatus = req.getParameter("empStatus");// 從前端表單取得員工狀態
+
+        EmployeeVO employee = new EmployeeVO();
+
+        employee.setEmpName(empName);
+        //employee.setEmpPassword(empPassword);
+        employee.setEmpPassword("12345678"); // 新增員工時設定預設密碼
+        employee.setEmpTel(empTel);
+        employee.setEmpIce(empIce);
+        employee.setEmpIcetel(empIcetel);
+        employee.setEmpAdd(empAdd);
+        employee.setEmpSal(Integer.valueOf(empSal));
+        employee.setEmpStatus(empStatus);
+
+        employeeService.addEmployee(employee);
+
+        req.getSession().removeAttribute("employeePageQty");
+
+        return getAllEmployees(req, res);
+    }
+    
     private String getOneEmployee(HttpServletRequest req, HttpServletResponse res) {
 
         String empNo = req.getParameter("empNo");
         
         // 沒有輸入員工編號
         if (empNo == null || empNo.trim().isEmpty()) {
-            return "/index.jsp";
+            return "/employee/index.jsp";
         }
 
 
@@ -75,6 +114,21 @@ public class EmployeeServlet extends HttpServlet {
         req.setAttribute("employee", employee);
 
         return "/employee/listOneEmployee.jsp";
+    }
+    
+    private String deleteEmployee(
+            HttpServletRequest req,
+            HttpServletResponse res) {
+
+        String empNo = req.getParameter("empNo");
+
+        Integer id = Integer.valueOf(empNo);
+
+        employeeService.deleteEmployee(id);
+        
+        req.getSession().removeAttribute("employeePageQty");
+
+        return getAllEmployees(req, res);
     }
 
     private String getAllEmployees(
@@ -119,7 +173,7 @@ public class EmployeeServlet extends HttpServlet {
 
         } else {
 
-            return "/index.jsp";
+            return "/employee/index.jsp";
         }
 
         return "/employee/listCompositeQueryEmployees.jsp";

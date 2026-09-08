@@ -1,11 +1,12 @@
 package com.bistroops.employee.model;
-import static com.bistroops.employee.model.Constants.PAGE_MAX_RESULT;
 
+import static com.bistroops.employee.model.Constants.PAGE_MAX_RESULT;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 
 
 
@@ -25,6 +26,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeVO getEmployeeById(Integer id) {
 	    return dao.getById(id);
+	}
+	
+	@Override
+	public void addEmployee(EmployeeVO employee) {
+	    dao.insert(employee);
 	}
 
 	@Override
@@ -58,6 +64,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// 計算Emp數量每頁3筆的話總共有幾頁
 		int pageQty = (int)(total % PAGE_MAX_RESULT == 0 ? (total / PAGE_MAX_RESULT) : (total / PAGE_MAX_RESULT + 1));
 		return pageQty;
+	}
+	
+	@Override
+	public void deleteEmployee(Integer id) {
+	    dao.delete(id);
 	}
 
 }
