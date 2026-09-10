@@ -53,25 +53,6 @@ public class SeatTypeVO {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-	public SeatTypeVO(String seatTypeNo, Integer seatTypeNum, Integer seatTypeRsvNum, Integer seatTypeTakeNum,
-			Integer seatTypeCallNum, Integer seatTypePending, Set<WaitingVO> waiting, Set<SeatVO> seat,
-			Set<ReservationVO> reservation) {
-		super();
-		this.seatTypeNo = seatTypeNo;
-		this.seatTypeNum = seatTypeNum;
-		this.seatTypeRsvNum = seatTypeRsvNum;
-		this.seatTypeTakeNum = seatTypeTakeNum;
-		this.seatTypeCallNum = seatTypeCallNum;
-		this.seatTypePending = seatTypePending;
-		this.waiting = waiting;
-		this.seat = seat;
-		this.reservation = reservation;
-	}
-
-
-
 	public String getSeatTypeNo() {
 		return seatTypeNo;
 	}

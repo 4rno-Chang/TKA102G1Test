@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import com.bistroops.util.HibernateUtil;
+
 
 
 public class OrdersDAOImpl implements OrdersDAO{
@@ -49,7 +51,7 @@ public class OrdersDAOImpl implements OrdersDAO{
 		}
 	};
 	@Override
-	public OrdersVO findByPrimaryKey(Integer ordersNo) {
+	public OrdersVO findByOne(Integer ordersNo) {
 		Session session =HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
