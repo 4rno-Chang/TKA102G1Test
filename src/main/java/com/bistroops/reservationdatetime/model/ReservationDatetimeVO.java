@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "reservation_datetime")
-public class ReservationdatetimeVO {
+public class ReservationDatetimeVO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +29,42 @@ public class ReservationdatetimeVO {
 	@OneToMany(mappedBy = "reservationdatetime")
 	@OrderBy("rsvNo asc")
 	private Set<ReservationVO> reservations;
+
+	public Integer getRsvDtNo() {
+		return rsvDtNo;
+	}
+
+	public void setRsvDtNo(Integer rsvDtNo) {
+		this.rsvDtNo = rsvDtNo;
+	}
+
+	public LocalDateTime getRsvDtDatetime() {
+		return rsvDtDatetime;
+	}
+
+	public void setRsvDtDatetime(LocalDateTime rsvDtDatetime) {
+		this.rsvDtDatetime = rsvDtDatetime;
+	}
+
+	public Set<ReservationVO> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<ReservationVO> reservations) {
+		this.reservations = reservations;
+	}
+
+	public ReservationDatetimeVO(Integer rsvDtNo, LocalDateTime rsvDtDatetime, Set<ReservationVO> reservations) {
+		
+		this.rsvDtNo = rsvDtNo;
+		this.rsvDtDatetime = rsvDtDatetime;
+		this.reservations = reservations;
+	}
+	
+	public ReservationDatetimeVO() {
+		
+	}
+	
+	
 }
+
