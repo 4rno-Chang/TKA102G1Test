@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>公告設定</title>
 </head>
-<body>
+<body> 
 	<h1>公告設定</h1>
 	<c:if test="${not empty errorMsg}">
 		<p style="color: red;">${errorMsg}</p>
