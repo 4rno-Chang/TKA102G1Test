@@ -7,7 +7,7 @@ import java.util.Set;
 import com.bistroops.meal.model.MealVO;
 
 public interface MealtypeDAO {
-	//xx
+	
 	public void insert(MealtypeVO mealtypeVO);
 
 	public void update(MealtypeVO mealtypeVO);
@@ -17,8 +17,6 @@ public interface MealtypeDAO {
 	public MealtypeVO findByNo(Integer mealtypeNo);
 
 	public List<MealtypeVO> getByNameQuery(String name);
-	
-	public Set<MealVO> getMealByTpye(Integer mealtypeNo);
 
 	public List<MealtypeVO> getAll();
 	

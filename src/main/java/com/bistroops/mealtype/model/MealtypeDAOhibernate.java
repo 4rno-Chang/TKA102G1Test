@@ -62,17 +62,5 @@ public class MealtypeDAOhibernate implements MealtypeDAO {
 		return getSession().createQuery("from MealtypeVO",MealtypeVO.class).getResultList();
 	}
 
-	@Override
-	public Set<MealVO> getMealByTpye(Integer mealtypeNo) {
-		MealtypeVO mealtypes = getSession().find(MealtypeVO.class, mealtypeNo);
-			
-		return mealtypes.getMeals();
-//		return getSession().createQuery("from MealVO Where mealtpyeNo = :typeNo order by mealNo",MealVO.class)
-//				.setParameter("typeNo", mealtypeNo).getResultList(); 
-	}
-
-
-
-
 	
 }
