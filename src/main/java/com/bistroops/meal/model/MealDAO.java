@@ -17,8 +17,6 @@ public interface MealDAO {
 	public MealVO findByNo(Integer mealNo);
 
 	public List<MealVO> getByComplexQuery(Map<String, String> map);
-	
-	public List<MealVO> getAll(int currentPage);
 
 	public List<MealVO> getAll();
 	
