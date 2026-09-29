@@ -10,7 +10,6 @@ import com.bistroops.util.HibernateUtil;
 
 public class MealtypeDAOhibernate implements MealtypeDAO {
 	
-	//SessionFactory 為 thread-safe，宣告為大家共用。
 	private SessionFactory factory;
 
 	public MealtypeDAOhibernate() {
