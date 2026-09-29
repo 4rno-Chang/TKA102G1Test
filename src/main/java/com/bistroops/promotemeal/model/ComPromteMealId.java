@@ -10,7 +10,6 @@ public class ComPromteMealId implements Serializable{
 	
 	private Integer mealNo;
 
-
 	public ComPromteMealId() {
 	}
 	

@@ -2,9 +2,6 @@ package com.bistroops.meal.model;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import com.bistroops.mealtype.model.MealtypeVO;
 
 public interface MealDAO {
 	

@@ -1,12 +1,11 @@
 package com.bistroops.mealtype.model;
 
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.bistroops.meal.model.MealVO;
+import com.bistroops.feedback.model.FeedBackVO;
 import com.bistroops.util.HibernateUtil;
 
 public class MealtypeDAOhibernate implements MealtypeDAO {

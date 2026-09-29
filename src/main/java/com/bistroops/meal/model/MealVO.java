@@ -3,7 +3,7 @@ package com.bistroops.meal.model;
 import java.util.Arrays;
 import java.util.Set;
 
-import com.bistroops.mealtype.model.MealtypeVO;
+import com.bistroops.feedback.model.FeedBackVO;
 //import com.bistroops.ordersdetails.model.OrdersDetailsVO;
 import com.bistroops.promotemeal.model.PromoteMealVO;
 
@@ -30,7 +30,7 @@ public class MealVO  {
 	
 	@ManyToOne
 	@JoinColumn(name = "meal_type_no",referencedColumnName = "meal_type_no")
-	private MealtypeVO mealType;
+	private FeedBackVO mealType;
 	
 	@Column(name = "meal_name",nullable = false)
 	private String mealName;
@@ -57,6 +57,8 @@ public class MealVO  {
 
 	public MealVO() {
 	}
+	
+	
 
 	public Integer getMealNo() {
 		return mealNo;
@@ -66,11 +68,11 @@ public class MealVO  {
 		this.mealNo = mealNo;
 	}
 
-	public MealtypeVO getMealType() {
+	public FeedBackVO getMealType() {
 		return mealType;
 	}
 
-	public void setMealType(MealtypeVO mealType) {
+	public void setMealType(FeedBackVO mealType) {
 		this.mealType = mealType;
 	}
 
