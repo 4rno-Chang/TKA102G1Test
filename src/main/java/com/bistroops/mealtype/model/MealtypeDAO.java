@@ -7,7 +7,7 @@ import java.util.Set;
 import com.bistroops.meal.model.MealVO;
 
 public interface MealtypeDAO {
-	
+	//xxx
 	public void insert(MealtypeVO mealtypeVO);
 
 	public void update(MealtypeVO mealtypeVO);

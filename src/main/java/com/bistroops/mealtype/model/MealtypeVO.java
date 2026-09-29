@@ -34,8 +34,6 @@ public class MealtypeVO {
 	public MealtypeVO() {
 	}
 
-	
-
 	public Integer getMealtypeNo() {
 		return mealtypeNo;
 	}
